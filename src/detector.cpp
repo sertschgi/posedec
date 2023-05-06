@@ -16,6 +16,7 @@
 void utils::parser::addDetOptions(cxxopts::Options& cxxoption)
 {
     cxxoption.add_options()
+        ("h,help", "Show help")
         ("s,stream", "Show the camera-stream in a window")
         ("c,checkpoint", "Path of the model checkpoint (.tflite)", cxxopts::value<std::string>()->default_value("detect.tflite"))
         ("l,labelmap", "Path of the labelmap (.pbtxt)", cxxopts::value<std::string>()->default_value("labelmap.pbtxt"))
@@ -89,7 +90,7 @@ int main(int argc, char *argv[])
     catch (const cxxopts::exceptions::exception e) {
         std::cerr << "Error parsing command-line arguments: " << e.what() << std::endl
             << "usage: posedec --option" << std::endl
-            << "For help use -h or --help";
+            << "For help use -h or --help" << std::endl;
         exit(1);
     }
 
