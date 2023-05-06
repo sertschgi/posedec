@@ -102,13 +102,18 @@ int main(int argc, char *argv[])
 
     const bool CAMERA_WINDOW = result.count("stream") > 0;
     const std::string CHECKPOINT_PATH = result["checkpoint"].as<std::string>();
+    std::cout << "1";
     const std::string LABELMAP_PATH = result["labelmap"].as<std::string>();
+    std::cout << "1";
     const float CONFIDENCE_THRESHOLD = result["threshold"].as<float>();
+    std::cout << "1";
     const char* CAMERA_RESOLUTION = result["resolution"].as<char*>();
+    std::cout << "1";
     const size_t X_POS = std::strchr(CAMERA_RESOLUTION, 'x') - CAMERA_RESOLUTION;
     const int CAMERA_WIDTH = std::atoi(CAMERA_RESOLUTION);
     const int CAMERA_HEIGHT = std::atoi(CAMERA_RESOLUTION + X_POS + 1);
     const int CAMERA_FRAMERATE = result["framerate"].as<int>();
+    std::cout << "1";
     const int CAMERA_ORIENTATION = result["orientation"].as<int>();
 
     std::cout << "[Info] Options specified: " << std::endl 
