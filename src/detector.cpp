@@ -87,8 +87,15 @@ int main(int argc, char *argv[])
         result = options.parse(argc, argv);
     }
     catch (const cxxopts::exceptions::exception e) {
-        std::cerr << "Error parsing command-line arguments: " << e.what() << std::endl;
+        std::cerr << "Error parsing command-line arguments: " << e.what() << std::endl
+            << "usage: posedec --option" << std::endl
+            << "For help use -h or --help";
         exit(1);
+    }
+
+    if (result.count("help") > 0)
+    {
+        std::cout << "Help: " << std::endl << options.help() << std::endl;
     }
 
     const bool CAMERA_WINDOW = result.count("stream") > 0;
@@ -101,6 +108,16 @@ int main(int argc, char *argv[])
     const int CAMERA_HEIGHT = std::atoi(CAMERA_RESOLUTION + X_POS + 1);
     const int CAMERA_FRAMERATE = result["framerate"].as<int>();
     const int CAMERA_ORIENTATION = result["orientation"].as<int>();
+
+    std::cout << "[Info] Options specified: " << std::endl 
+        << "Camera window: " << CAMERA_WINDOW
+        << "Checkpoint path: " << CHECKPOINT_PATH
+        << "Labelmap path: " << LABELMAP_PATH
+        << "Confidence threshold: " << CONFIDENCE_THRESHOLD
+        << "Camera width: " << CAMERA_WIDTH
+        << "Camera height: " << CAMERA_HEIGHT
+        << "Camera framerate: " << CAMERA_FRAMERATE
+        << "Camera orientation: " << CAMERA_ORIENTATION;
 
     const std::string GST_PIPELINE 
     {
