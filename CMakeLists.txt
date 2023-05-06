@@ -9,8 +9,8 @@ set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/build)
 file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR})
 
 # Set the directories for external dependencies
-set(OpenCV_DIR "${CMAKE_SOURCE_DIR}/external/opencv")
-set(cxxopts_DIR "${CMAKE_SOURCE_DIR}/external/cxxopts")
+set(OpenCV_DIR "${CMAKE_SOURCE_DIR}/extern/opencv")
+set(cxxopts_DIR "${CMAKE_SOURCE_DIR}/extern/cxxopts")
 
 # Find the external libraries
 find_package(OpenCV REQUIRED)
