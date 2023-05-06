@@ -119,7 +119,7 @@ int main(int argc, char *argv[])
         << "Camera width: " << CAMERA_WIDTH << std::endl 
         << "Camera height: " << CAMERA_HEIGHT << std::endl 
         << "Camera framerate: " << CAMERA_FRAMERATE << std::endl 
-        << "Camera orientation: " << CAMERA_ORIENTATION; << std::endl 
+        << "Camera orientation: " << CAMERA_ORIENTATION << std::endl;
 
     const std::string GST_PIPELINE 
     {
