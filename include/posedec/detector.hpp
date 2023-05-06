@@ -29,6 +29,12 @@ namespace utils::stream
 
 class Detector
 {
-    Detector(std::string, std::string, int, int);
-    cv::Mat detect(cv::Mat);
+    public:
+        cv::dnn::Net net {};
+        int WIDTH {};
+        int HEIGHT {};
+        cv::Mat detection {};
+
+        Detector(std::string, std::string, int, int);
+        cv::Mat detect(cv::Mat);
 };
