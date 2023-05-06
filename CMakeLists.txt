@@ -9,18 +9,18 @@ set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/build)
 file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR})
 
 # Set the directories for external dependencies
-set(OpenCV_DIR "${CMAKE_SOURCE_DIR}/extern/opencv")
-set(cxxopts_DIR "${CMAKE_SOURCE_DIR}/extern/cxxopts")
+set(OpenCV_DIR "${CMAKE_SOURCE_DIR}/external/opencv")
+set(cxxopts_DIR "${CMAKE_SOURCE_DIR}/external/cxxopts")
 
 # Find the external libraries
 find_package(OpenCV REQUIRED)
-find_package(cxxopts REQUIRED)
+add_subdirectory(external/cxxopts)
 
 # Add the include directories for the external libraries
-include_directories(include ${OpenCV_INCLUDE_DIRS} ${cxxopts_INCLUDE_DIRS})
+include_directories(include ${OpenCV_INCLUDE_DIRS} ${cxxopts_SOURCE_DIR}/include)
 
 # Add the source files to the build
 add_executable(posedec src/detector.cpp)
 
 # Link against the external libraries
-target_link_libraries(posedec ${OpenCV_LIBS} cxxopts::cxxopts ...)
+target_link_libraries(posedec ${OpenCV_LIBS} cxxopts)
