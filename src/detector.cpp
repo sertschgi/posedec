@@ -52,7 +52,7 @@ Detector::Detector
     int height
 )
 {
-    this->net = cv::dnn::readNetFromTfLite(checkpoint_path);
+    this->net = cv::dnn::readNetFromTensorflow(checkpoint_path);
     this->WIDTH = width;
     this->HEIGHT = height;
 }
@@ -127,7 +127,7 @@ int main(int argc, char *argv[])
     cv::namedWindow("Detection Result", cv::WINDOW_AUTOSIZE);
 
     cv::Mat img {};
-    cv::Mat result {};
+    //cv::Mat result {};
 
     std::cout << "[Info] Hit ESC to exit" << std::endl;
 
@@ -135,11 +135,11 @@ int main(int argc, char *argv[])
     {
         if (!cap.read(img)) 
         {
-            std::cout<<"[Error] Capture read error" << std::endl;
+            std::cout << "[Error] Capture read error" << std::endl;
             break;
         }
 
-        result = det.detect(img);
+        auto result = det.detect(img);
 
         std::cout << "[Info] Detection:" << result << std::endl;
     
