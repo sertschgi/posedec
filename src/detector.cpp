@@ -86,7 +86,7 @@ int main(int argc, char *argv[])
     try {
         result = options.parse(argc, argv);
     }
-    catch (const cxxopts::exceptions::no_such_option e) {
+    catch (const cxxopts::exceptions::exception e) {
         std::cerr << "Error parsing command-line arguments: " << e.what() << std::endl;
         exit(1);
     }
