@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
 {
     cxxopts::Options options("detector");
     utils::parser::addDetOptions(options);
-    cxxopts::ParseResult result{};
+    cxxopts::ParseResult result {};
 
     try {
         result = options.parse(argc, argv);
@@ -97,13 +97,14 @@ int main(int argc, char *argv[])
     if (result.count("help") > 0)
     {
         std::cout << "Help: " << std::endl << options.help() << std::endl;
+        return 0;
     }
 
     const bool CAMERA_WINDOW = result.count("stream") > 0;
     const std::string CHECKPOINT_PATH = result["checkpoint"].as<std::string>();
     const std::string LABELMAP_PATH = result["labelmap"].as<std::string>();
     const float CONFIDENCE_THRESHOLD = result["threshold"].as<float>();
-    const char* CAMERA_RESOLUTION = result["resolution"].as<const char*>();
+    const char* CAMERA_RESOLUTION = result["resolution"].as<char*>();
     const size_t X_POS = std::strchr(CAMERA_RESOLUTION, 'x') - CAMERA_RESOLUTION;
     const int CAMERA_WIDTH = std::atoi(CAMERA_RESOLUTION);
     const int CAMERA_HEIGHT = std::atoi(CAMERA_RESOLUTION + X_POS + 1);
@@ -138,7 +139,7 @@ int main(int argc, char *argv[])
 
     if (!cap.isOpened()) 
     {
-        std::cout<<"[Error] Failed to open camera."<< std::endl;
+        std::cerr << "[Error] Failed to open camera."<< std::endl;
         return (-1);
     }
         
